@@ -1,0 +1,41 @@
+[2025-11-04 11:15:21] ERROR: Configuration file not found!
+[2025-11-04 11:18:59] ERROR: Configuration file not found!
+[2025-11-04 11:27:19] ERROR: Configuration file not found!
+[2025-11-04 11:31:50] ERROR: Configuration file not found!
+[2025-11-04 11:36:04] INFO: Backup job started at 2025-11-04 11:36:03
+[2025-11-04 11:36:04] INFO: Starting backup for test_data...
+tar (child): /backup-2025-11-04-1136.tar.gz: Cannot open: Permission denied
+tar (child): Error is not recoverable: exiting now
+tar: Child returned status 2
+tar: Error is not recoverable: exiting now
+[2025-11-04 11:36:04] ERROR: Backup creation failed!
+[2025-11-04 11:37:37] INFO: Backup job started at 2025-11-04 11:37:37
+[2025-11-04 11:37:37] INFO: Starting backup for test_data...
+[2025-11-04 11:37:38] SUCCESS: Backup created: backup-2025-11-04-1137.tar.gz
+[2025-11-04 11:37:38] INFO: Verifying checksum for backup-2025-11-04-1137.tar.gz...
+./backups/backup-2025-11-04-1137.tar.gz: OK
+[2025-11-04 11:37:38] SUCCESS: Checksum verified successfully.
+[2025-11-04 11:37:38] INFO: Archive integrity test passed.
+[2025-11-04 11:37:38] INFO: Starting cleanup of old backups...
+[2025-11-04 11:37:39] INFO: Cleanup completed.
+[2025-11-04 11:37:39] INFO: Backup job completed successfully.
+[2025-11-04 12:09:47] INFO: Backup job started at 2025-11-04 12:09:46
+[2025-11-04 12:09:47] INFO: Starting backup for test_data...
+[2025-11-04 12:09:47] SUCCESS: Backup created: backup-2025-11-04-1209.tar.gz
+[2025-11-04 12:09:47] INFO: Verifying checksum for backup-2025-11-04-1209.tar.gz...
+./backups/backup-2025-11-04-1209.tar.gz: OK
+[2025-11-04 12:09:47] SUCCESS: Checksum verified successfully.
+[2025-11-04 12:09:48] INFO: Archive integrity test passed.
+[2025-11-04 12:09:48] INFO: Starting cleanup of old backups...
+[2025-11-04 12:09:48] INFO: Cleanup completed.
+[2025-11-04 12:09:48] INFO: Backup job completed successfully.
+[2025-11-04 12:11:26] INFO: Backup job started at 2025-11-04 12:11:26
+[2025-11-04 12:11:26] INFO: Starting backup for test_data...
+[2025-11-04 12:11:27] SUCCESS: Backup created: backup-2025-11-04-1211.tar.gz
+[2025-11-04 12:11:27] INFO: Verifying checksum for backup-2025-11-04-1211.tar.gz...
+./backups/backup-2025-11-04-1211.tar.gz: OK
+[2025-11-04 12:11:27] SUCCESS: Checksum verified successfully.
+[2025-11-04 12:11:27] INFO: Archive integrity test passed.
+[2025-11-04 12:11:27] INFO: Starting cleanup of old backups...
+[2025-11-04 12:11:28] INFO: Cleanup completed.
+[2025-11-04 12:11:28] INFO: Backup job completed successfully.
