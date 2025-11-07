@@ -19,14 +19,14 @@ This tool is ideal for Linux users, system administrators, and developers who wa
 ---
 ## 📦 Project Structure
 Backup_System/
-│
-├── backups/ # Stores all generated backup .tar.gz files
-├── logs/ # Contains log files of each backup operation
-├── test_data/ # Sample folder to test the backup script
-│
-├── backup.sh # Main Bash script that performs the backup process
-├── backup.config # Configuration file for setting backup parameters
-└── README.md # Project documentation (this file)
+|
+|--- backups/ # Stores all generated backup .tar.gz files
+|--- logs/ # Contains log files of each backup operation
+|--- test_data/ # Sample folder to test the backup script
+|
+|--- backup.sh # Main Bash script that performs the backup process
+|--- backup.config # Configuration file for setting backup parameters
+|--- README.md # Project documentation (this file)
 ---
 ## ⚙️ Features
 
