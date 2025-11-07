@@ -1,159 +1,102 @@
-Project Overview
-
-You need to create a Bash script (backup.sh) that automatically backs up folders, manages old backups, verifies their integrity, and logs everything.
-It should be a smart backup system — like an automated, reliable “copy & paste” tool.
-
-Main Features (What Your Script Must Do)
-1. Create Backups
-
-Take a folder as input (e.g. ./backup.sh /home/user/documents).
-
-Create a compressed file (.tar.gz) named with the current date/time
-→ Example: backup-2024-11-03-1430.tar.gz.
-
-Generate a checksum file (.md5 or .sha256) to verify backup integrity.
-
-Skip unnecessary folders (like .git, node_modules, .cache).
-
-2. Delete Old Backups Automatically
-
-To save space, delete older backups using a retention policy:
-
-Keep last 7 daily backups
-
-Keep last 4 weekly backups
-
-Keep last 3 monthly backups
-→ Delete anything older than these.
-
-3. Verify Backups
-
-After creating each backup:
-
-Recalculate checksum and compare.
-
-Try extracting a test file.
-
-Print “SUCCESS” if it’s good, “FAILED” if corrupted.
-
-4. Smart Features
-A. Configuration File (backup.config)
-
-Store settings (not inside script):
-
-BACKUP_DESTINATION=/home/backups
-EXCLUDE_PATTERNS=".git,node_modules,.cache"
-DAILY_KEEP=7
-WEEKLY_KEEP=4
-MONTHLY_KEEP=3
-
-B. Logging
-
-Everything should be logged to backup.log with timestamps, actions, results, and errors.
-
-C. Dry Run Mode
-
-Run in test mode (--dry-run) to show what would happen without doing it.
-
-D. Prevent Multiple Runs
-
-Use a lock file (/tmp/backup.lock) so the script can’t run twice at the same time.
-
-Extra (Optional) Features
-
-If you want bonus points:
-
-Restore backups → ./backup.sh --restore backup-file --to /path
-
-List all backups → ./backup.sh --list
-
-Check available disk space
-
-Send email notifications (simulate using a text file)
-
-Incremental backups (only copy changed files)
-
-Error Handling
-
-Your script should handle problems gracefully:
-
-Missing folder → print “Error: Source folder not found”
-
-Permission denied
-
-Not enough disk space
-
-Missing config file
-
-Missing backup destination → create automatically
-
-Interrupted script → clean up partial files
-
-Project Files
-backup-system/
-├── backup.sh          # Main script
-├── backup.config      # Config file
-└── README.md          # Documentation
-
-README.md Must Include
-
-A. Overview: What the script does and why
-
-B. Usage: How to install, run, and all options
-
-C. How It Works: Logic for rotation, checksum, structure
-
-D. Design Decisions: Why you chose this approach
-
-E. Testing: How you tested with examples
-
-F. Known Issues: What can be improved
-
-🧍‍♂️ What You Must Demonstrate
-
-Creating backups
-
-Multiple backups over fake “days”
-
-Automatic old backup deletion
-
-Dry run mode
-
-Error handling
-
-(Optional) Restore functionality
-
-Grading Breakdown
-Category	Weight	Description
-Code Works Correctly	30%	Features work without errors
-Code Quality	25%	Clean, well-structured, commented
-Error Handling	20%	Proper error messages, no crashes
-Documentation	15%	Clear README & examples
-Configuration	10%	Uses external config properly
-Bonus, For extra smart features
-Tips
-
-Start small and test each part.
-
-Use functions for each feature.
-
-Log everything.
-
-Test your script regularly.
-
-Use GitHub for version control.
-
-In Short
-
-You are building a fully automated, configurable, and reliable backup system in Bash that:
-
-Backs up data
-
-Verifies integrity
-
-Manages old backups
-
-Logs everything
-
-Can be customized with a config file
-Optionally, it can also restore, list, and check space.
+# 🗂️ Automated Backup System
+
+An **automated backup tool** built using **Bash scripting** that safely creates and manages backups of important files or folders.  
+This project automatically copies your data, stores it securely, verifies the integrity of each backup, and manages old backups efficiently.
+
+---
+
+## 🚀 Project Overview
+
+The **Backup System** automates the process of backing up directories on your system.  
+It ensures your data is **safe, verified, and easy to restore** by performing these key actions:
+
+- 📁 Creates timestamped backup files.
+- ✅ Verifies the integrity of backups using checksum validation.
+- 🧹 Automatically removes older backups to save disk space.
+- 🧾 Logs all backup activities for tracking and debugging.
+
+This tool is ideal for Linux users, system administrators, and developers who want a **simple yet reliable** backup automation system.
+---
+## 📦 Project Structure
+Backup_System/
+│
+├── backups/ # Stores all generated backup .tar.gz files
+├── logs/ # Contains log files of each backup operation
+├── test_data/ # Sample folder to test the backup script
+│
+├── backup.sh # Main Bash script that performs the backup process
+├── backup.config # Configuration file for setting backup parameters
+└── README.md # Project documentation (this file)
+---
+## ⚙️ Features
+
+### 🧰 1. Automated Backup Creation
+- Takes the target folder as input.
+- Compresses the folder into a `.tar.gz` file with a timestamp.
+- Saves backups in the `backups/` directory.
+
+### 🔐 2. Checksum Verification
+- Generates a `.sha256` checksum for every backup file.
+- Ensures data integrity — verifies that backups are not corrupted.
+
+### 🧾 3. Logging System
+- Records all actions (success or failure) with timestamps.
+- Stores logs in the `logs/` folder for future reference.
+
+### ♻️ 4. Cleanup of Old Backups
+- Automatically deletes backups older than a defined number of days (customizable in `backup.config`).
+
+### ⚡ 5. Configuration File
+- `backup.config` lets you easily customize:
+  - Backup source directory
+  - Backup destination folder
+  - Log file path
+  - Retention policy (number of days to keep backups)
+---
+## 🧩 How It Works
+1. The user specifies the folder to back up.
+2. The script compresses that folder and stores it in `backups/` with the current date and time in the filename.
+3. A SHA256 checksum file is created for integrity verification.
+4. The backup operation is logged in `logs/`.
+5. If enabled, old backups beyond the retention period are automatically removed.
+---
+## 🛠️ Usage Instructions
+
+### 1. Make the Script Executable
+```bash
+chmod +x backup.sh
+
+**Run the Backup Script**:      ./backup.sh <folder_to_backup>
+**Example**:                    ./backup.sh test_data
+**Check the Logs **:             cat logs/backup-<timestamp>.log
+**Verify Backup Integrity (Optional)**:       sha256sum -c backups/backup-<timestamp>.tar.gz.sha256
+
+**Configuration Example (backup.config)**:
+
+# Configuration file for Automated Backup System
+# Source folder to back up
+SOURCE_DIR="test_data"
+# Destination folder for backups
+BACKUP_DIR="backups"
+# Log file location
+LOG_DIR="logs"
+# Number of days to keep old backups
+RETENTION_DAYS=7
+
+**Technologies Used**:
+
+Bash Scripting – Automates all operations
+tar – Compresses files and folders
+sha256sum – Verifies data integrity
+cron (optional) – Schedule automatic backups
+
+**Future Enhancements**:
+
+Email notifications after each backup
+Remote backup storage (AWS S3, Google Drive, etc.)
+Incremental backup support
+Web-based dashboard for monitoring backup status
+
+**Conclusion**:
+
+This Automated Backup System simplifies the process of safeguarding important data through automation, verification, and logging. It’s a lightweight, easy-to-customize, and reliable solution for everyday backup tasks.
