@@ -66,10 +66,14 @@ Backup_System/
 ```bash
 chmod +x backup.sh
 
-**Run the Backup Script**:      ./backup.sh <folder_to_backup>
-**Example**:                    ./backup.sh test_data
-**Check the Logs **:             cat logs/backup-<timestamp>.log
-**Verify Backup Integrity (Optional)**:       sha256sum -c backups/backup-<timestamp>.tar.gz.sha256
+**Run the Backup Script**:
+./backup.sh <folder_to_backup>
+**Example**:
+./backup.sh test_data
+**Check the Logs **:
+cat logs/backup-<timestamp>.log
+**Verify Backup Integrity (Optional)**:
+sha256sum -c backups/backup-<timestamp>.tar.gz.sha256
 
 **Configuration Example (backup.config)**:
 
